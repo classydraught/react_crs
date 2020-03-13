@@ -1,64 +1,61 @@
-import React,{Component} from 'react';
-import { Card,CardImg,CardImgOverlay,CardBody,CardTitle,CardText } from 'reactstrap';
-class Menu extends Component{
-    constructor(props){
+import React, { Component } from 'react';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import Dish from './DishdetailComponent';
+class Menu extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            selectedDish: null
+            selectedDish: null,
+            comments: null
         }
- }
+        console.log('Menu constructor is mounted');
+    }
 
- onDishSelect(dish) {
-    this.setState({ selectedDish: dish});
-}
+    onDishSelect(dish) {
+        this.setState({ selectedDish: dish, comments: dish.comments });
 
-renderDish(dish) {
-    if (dish != null)
-        return(
-            <Card>
-                <CardImg top src={dish.image} alt={dish.name} />
-                <CardBody>
-                  <CardTitle>{dish.name}</CardTitle>
-                  <CardText>{dish.description}</CardText>
-                </CardBody>
-            </Card>
-        );
-    else
-        return(
-            <div></div>
-        );
-}
-    
-    render(){
-        const menu = this.props.dishes.map((dish)=>{
+    }
+
+
+    componentDidMount() {
+        console.log("Component did mounted");
+    }
+
+
+    render() {
+        const menu = this.props.dishes.map((dish) => {
             return (
-                <div  className="col-12 col-md-5 m-1">
-                <Card key={dish.id}
-                  onClick={() => this.onDishSelect(dish)}>
-                  <CardImg width="100%" src={dish.image} alt={dish.name} />
-                  <CardImgOverlay>
-                      <CardTitle>{dish.name}</CardTitle>
-                  </CardImgOverlay>
-                </Card>
-              </div>
+                <div className="col-12 col-md-5 m-1">
+                    <Card key={dish.id}
+                        onClick={() => this.onDishSelect(dish)}>
+                        <CardImg width="100%" src={dish.image} alt={dish.name} />
+                        <CardImgOverlay>
+                            <CardTitle>{dish.name}</CardTitle>
+                        </CardImgOverlay>
+                    </Card>
+                </div>
+
             );
         });
-        return(
+        console.log("Render is invoked");
+        return (
             <div className="container">
                 <div className="row">
-                 
-                        {menu}
-                  
+                    {menu}
                 </div>
-                <div className="row">
-                  <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.state.selectedDish)}
-                  </div>
-                </div>
+
+                <Dish dish={this.state.selectedDish} comm={this.state.comments} />
             </div>
+
+
         );
 
-}
+    }
 }
 
 export default Menu;
+
+
+
+
+
