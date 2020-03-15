@@ -3,12 +3,6 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 
 class Dish extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-
 
 
 
@@ -32,8 +26,9 @@ class Dish extends Component {
     }
 
 
-    renderComments(comments) {
-        if (comments != null) {
+    renderComments(dish) {
+        if (dish != null) {
+            const comments = dish.comments;
             return (
                 <div>
                     <h4>Comments</h4>
@@ -64,15 +59,16 @@ class Dish extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.dish)}
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.comm)}
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.dish)}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderComments(this.props.dish)}
+                    </div>
                 </div>
             </div>
-
 
         );
     }
