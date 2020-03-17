@@ -35,7 +35,7 @@ function RenderComments({ comments }) {
 
                 {comments.map(comment => {
                     return (
-                        <div>
+                        <div key={comment.id}>
                             <p>{comment.comment}</p>
                             <p> -- {comment.author} , {new Intl.DateTimeFormat("en-US", {
                                 year: "numeric",
