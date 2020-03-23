@@ -52,9 +52,6 @@ function RenderComments({ comments }) {
         );
     } else return <div />;
 }
-
-
-
 const Dish = (props) => {
     console.log(props);
     if (props.dish != null) {
