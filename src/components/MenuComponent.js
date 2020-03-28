@@ -8,7 +8,7 @@ import {
   BreadcrumbItem,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Loading } from './loadingComponent';
+import Loading from './loadingComponent';
 function RenderMenuItem({ dish }) {
   return (
     <Card key={dish.id}>
